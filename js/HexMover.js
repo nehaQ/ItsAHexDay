@@ -28,9 +28,39 @@ $(document).ready(function(){
 	displayGreen = document.getElementById('displayGreen');
 	displayBlue = document.getElementById('displayBlue');
 
+	var now = new Date(),
+    then = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        0,0,0),
+        diff = now.getTime() - then.getTime(); // difference in milliseconds
+
+    var colour = diff; // The colour we should currently be at
+    // Now calculate RGB and steps
+    setInitialColours(colour);
+
 	timeout()
 	
 });
+
+function setInitialColours (colourNumber) 
+{
+	var copy = colourNumber;
+	// debugger;
+	copy = Math.floor(copy%0x9F6);
+	copy = Math.floor(copy/0x5);
+	if(copy > 0xFF)
+	{
+		blueStep = -1;
+		blue = 0xFF - (copy - 0x100);
+	}
+	else
+	{
+		blue = copy;
+	}
+	// alert(blue);
+}
 
 
 function timeout() {
