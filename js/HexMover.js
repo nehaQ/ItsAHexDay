@@ -162,7 +162,7 @@ function changeOpacity ()
 function BirthdayKeyPress(e)
 {
 	var evtobj = window.event? event : e
-	if (evtobj.keyCode == 73 && evtobj.ctrlKey) {
+	if (evtobj.keyCode == 69 && evtobj.ctrlKey) {
 		image.style.display = "";
 	}
 }
