@@ -6,6 +6,8 @@
 //   		  * ('#000000', 50) --> #808080
 // 		  * ('#EEEEEE', 25) --> #F2F2F2
 // 		  * ('EEE     , 25) --> #F2F2F2
+//			Dont think my calculations for setting initial colours are completely correct.
+// 			I am open to feedback on this issue			
 
 //---------------------------------------------------------------------------------------
 
@@ -21,13 +23,17 @@ var lowerColourLimit = -1;
 var displayRed;
 var displayGreen;
 var displayBlue;
+var image;
 
 $(document).ready(function(){
 
+	// Dom label elements
 	displayRed = document.getElementById('displayRed');
 	displayGreen = document.getElementById('displayGreen');
 	displayBlue = document.getElementById('displayBlue');
+	image = document.getElementById('bday');
 
+	// Time in milliseconds since midnight
 	var now = new Date(),
     then = new Date(
         now.getFullYear(),
@@ -46,8 +52,8 @@ $(document).ready(function(){
 
 function setInitialColours (colourNumber) 
 {
+	// Set blue initial colour
 	var copy = colourNumber;
-	// debugger;
 	copy = Math.floor(copy%0x9F6);
 	copy = Math.floor(copy/0x5);
 	if(copy > 0xFF)
@@ -59,7 +65,35 @@ function setInitialColours (colourNumber)
 	{
 		blue = copy;
 	}
-	// alert(blue);
+
+	// Set Green initial colour
+	copy = colourNumber;
+	copy = Math.floor(copy%0x9F600);
+	copy = Math.floor(copy/0x4FB);
+	if(copy > 0xFF)
+	{
+		greenStep = -1;
+		green = 0xFF - (copy - 0x100);
+	}
+	else
+	{
+		green = copy;
+	}
+
+	//Set Red initial colour
+	copy = colourNumber;
+	debugger;
+	copy = Math.floor(copy%0x4FB0000);
+	copy = Math.floor(copy/0x9F600);
+	if(copy > 0xFF)
+	{
+		redStep = -1;
+		red = 0xFF - (copy - 0x100);
+	}
+	else
+	{
+		red = copy;
+	}
 }
 
 
@@ -132,3 +166,20 @@ function changeOpacity ()
 {
 	opacity = opacity + opacityStep;
 }
+
+//-----------------------------------------------------------------------------
+
+function BirthdayKeyPress(e) {
+      var evtobj = window.event? event : e
+      if (evtobj.keyCode == 73 && evtobj.ctrlKey)
+      {
+      	image.style.display = "";
+      }
+}
+
+function HideBirthday (e) {
+	image.style.display = "none";
+}
+
+document.onkeydown = BirthdayKeyPress;
+document.onkeyup = HideBirthday;

@@ -17,24 +17,42 @@
           height: 100%;
           text-align: center;
       }
-    body {
-    margin: 0;
-    padding: 0;
-    text-align: center; /* !!! */
-}
 
-.centered {
-    margin: 0 auto;
-    text-align: left;
-    width: 800px;
-}
+      body {
+          margin: 0;
+          padding: 0;
+      }
+
+      .centered {
+          text-align: left;
+          width: 89%;
+          min-height: 100%;
+          height: auto !important;
+          height: 100%;
+          margin: 0 auto -90px; /* the bottom margin is the negative value of the footer's height */
+      }
+
+      img {
+        display: block;
+      }
 
       .footer, .push {
+          margin: 0 auto;
+          width: 89%;
           height: 90px; /* .push must be the same height as .footer */
       }
+
       h2 {
           display: inline-block;
-          opacity: 0.5;
+          opacity: 0.7;
+      }
+
+      .strokeme
+      {
+          text-shadow:
+          0.1px -0.1px 0 #555,
+          1px 1px 0 #222;
+          
       }
     </style>
     <title>It's a Hex Day</title>
@@ -42,7 +60,7 @@
 
   <body class="screen">
 
-    <div class="pull-right" style="margin:5px">
+    <div class="pull-right strokeme" style="margin:5px">
       <a href="http://github.com/NehaQ/ItsAHexDay">ಠ‿ಠ Neha </a>
     </div>
 
@@ -50,27 +68,28 @@
 
       <div class="clockContainer">
         <center>
+          <img src="http://nehaq.github.io/ItsAHexDay/images/happybday.gif" style="display:none" id="bday">
           <canvas id="clock" width="400px" height="400px">If you can see this message, update your browser</canvas>
         </center>
       </div> <!-- End of clock div -->
 
       <div class="colourMeter">
-    <center>
-        <h2><span class="label label-danger" id="displayRed">R</span></h2>
-        <h2><span class="label label-success" id="displayGreen">G</span></h2>
-        <h2><span class="label label-primary" id="displayBlue">B</span></h2>
-        <p class="text-muted">[0.2colours/millisecond]</p>
-    </center>
+        <center>
+            <h2><span class="label label-danger" id="displayRed">R</span></h2>
+            <h2><span class="label label-success" id="displayGreen">G</span></h2>
+            <h2><span class="label label-primary" id="displayBlue">B</span></h2>
+            <p class="text-muted strokeme">[~0.2colours/millisecond]</p>
+        </center>
       </div> <!-- End of ColourMeter div -->
 
       <div class="push"></div>
 
-    </div> <!-- End of Wrapper div -->
+    </div> <!-- End of centered div -->
 
     <footer class="footer">
-      <div>
-        <p class="text-muted">For those who want to see all the Hex colours mapped to a day.</p>
-        <address class="text-muted">Inspired by something a friend said (◕‿◕)</address>
+      <div class="strokeme">
+          <p class="text-muted">For those who want to see all the Hex colours mapped to a day.</p>
+          <address class="text-muted">Inspired by something a friend said (◕‿◕)</address>
       </div>
     </footer>
 
